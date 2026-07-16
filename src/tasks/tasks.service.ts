@@ -15,14 +15,14 @@ export class TasksService {
     return this.db.select().from(schema.tasks);
   }
 
-  getById(id: string) {
-    const task = this.db
+  async getById(id: string) {
+    const tasks = await this.db
       .select()
       .from(schema.tasks)
       .where(eq(schema.tasks.id, id));
 
-    if (!task) throw new NotFoundException(`Task ${id} not found`);
-    return task;
+    if (!tasks[0]) throw new NotFoundException(`Task ${id} not found`);
+    return tasks[0];
   }
 
   create(dto: CreateTaskDTO) {
