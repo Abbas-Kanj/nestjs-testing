@@ -1,0 +1,2 @@
+export const MATH_SERVICE = 'MATH_SERVICE';
+export const MATH_SERVICE_TCP_PORT = 4001;

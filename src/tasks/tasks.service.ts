@@ -35,8 +35,8 @@ export class TasksService {
     return this.getById(id);
   }
 
-  updateStatus(id: string, status: schema.TaskStatus) {
-    this.getById(id);
+  async updateStatus(id: string, status: schema.TaskStatus) {
+    await this.getById(id);
     this.db
       .update(schema.tasks)
       .set({ status })
@@ -46,8 +46,8 @@ export class TasksService {
     return this.getById(id);
   }
 
-  delete(id: string): void {
-    this.getById(id);
+  async delete(id: string): Promise<void> {
+    await this.getById(id);
     this.db.delete(schema.tasks).where(eq(schema.tasks.id, id)).run();
   }
 }
